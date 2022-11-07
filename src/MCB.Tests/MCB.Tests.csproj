@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Authors>Marcelo Castelo Branco</Authors>
+		<Company>MCB</Company>
+		<PackageProjectUrl>https://github.com/MarceloCas/MCB.Tests</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/MarceloCas/MCB.Tests</RepositoryUrl>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+	
+	<PropertyGroup>
+		<!-- Project is not a test project -->
+		<SonarQubeTestProject>false</SonarQubeTestProject>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="6.8.0" />
+		<PackageReference Include="MCB.Core.Domain.Entities" Version="0.34.0-alpha" />
+		<PackageReference Include="MCB.Core.Infra.CrossCutting.Abstractions" Version="0.6.0-alpha" />
+		<PackageReference Include="MCB.Core.Infra.CrossCutting.DependencyInjection.Abstractions" Version="0.6.0-alpha" />
+		<PackageReference Include="xunit.abstractions" Version="2.0.3" />
+	</ItemGroup>
+
+</Project>
