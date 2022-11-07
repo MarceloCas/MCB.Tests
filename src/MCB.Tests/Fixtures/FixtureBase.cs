@@ -5,7 +5,6 @@ namespace MCB.Tests.Fixtures;
 public abstract class FixtureBase
 {
     // Properties
-    //public IDateTimeProvider DateTimeProvider { get; set; }
     public Guid TenantId { get; }
     public string ExecutionUser { get; }
     public string SourcePlatform { get; }
@@ -13,14 +12,12 @@ public abstract class FixtureBase
     // Constructors
     protected FixtureBase()
     {
-        //DateTimeProvider = InitializeDateTimeProvider();
         TenantId = GenerateNewTenantId();
         ExecutionUser = GenerateNewExecutionUser();
         SourcePlatform = GenerateNewSourcePlatform();
     }
 
     // Abstract Methods
-    //protected abstract IDateTimeProvider InitializeDateTimeProvider();
     protected abstract IDependencyInjectionContainer CreateDependencyInjectionContainerInternal();
     protected abstract void ConfigureDependencyInjectionContainerInternal(IDependencyInjectionContainer dependencyInjectionContainer);
     protected abstract void BuildDependencyInjectionContainerInternal(IDependencyInjectionContainer dependencyInjectionContainer);

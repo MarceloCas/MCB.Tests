@@ -7,9 +7,6 @@ namespace MCB.Tests;
 
 public abstract class TestBase
 {
-    // Fields
-    private DateTimeOffset _currentDate;
-
     // Properties
     protected ITestOutputHelper TestOutputHelper { get; }
     protected IDateTimeProvider DateTimeProvider { get; private set; }
@@ -18,9 +15,7 @@ public abstract class TestBase
     protected TestBase(ITestOutputHelper testOutputHelper)
     {
         TestOutputHelper = testOutputHelper;
-
-        _currentDate = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 12, minute: 0, second: 0, offset: TimeSpan.Zero);
-        DateTimeProvider = CreateDateTimeProvider(_currentDate);
+        DateTimeProvider = CreateDateTimeProvider(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 12, minute: 0, second: 0, offset: TimeSpan.Zero));
     }
 
     // Protected Abstract Methods
@@ -37,8 +32,6 @@ public abstract class TestBase
         }
         else
             DateTimeProvider.ChangeGetDateCustomFunction(() => newDate.Value);
-
-        _currentDate = DateTimeProvider.GetDate();
     }
     protected void ValidateAfterRegisterNew(
         DomainEntityBase domainEntity,
