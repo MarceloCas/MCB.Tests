@@ -41,7 +41,7 @@ public abstract class TestBase
     {
         domainEntity.Id.Should().NotBe(Guid.Empty);
 
-        domainEntity.AuditableInfo.CreatedAt.Should().Be(DateTimeProvider.GetDate());
+        domainEntity.AuditableInfo.CreatedAt.Should().Be(DateTimeProvider.GetDate().UtcDateTime);
         domainEntity.AuditableInfo.CreatedBy.Should().Be(executionUser);
 
         domainEntity.AuditableInfo.LastUpdatedAt.Should().BeNull();
@@ -49,7 +49,7 @@ public abstract class TestBase
 
         domainEntity.AuditableInfo.LastSourcePlatform.Should().Be(sourcePlatform);
 
-        domainEntity.RegistryVersion.Should().Be(DateTimeProvider.GetDate());
+        domainEntity.RegistryVersion.Should().Be(DateTimeProvider.GetDate().UtcDateTime);
     }
     protected void ValidateAfterRegisterModification(
         DomainEntityBase domainEntityBeforeModification,
@@ -67,7 +67,7 @@ public abstract class TestBase
         domainEntityAfterModification.AuditableInfo.CreatedBy.Should().Be(domainEntityBeforeModification.AuditableInfo.CreatedBy);
 
         domainEntityAfterModification.AuditableInfo.LastUpdatedAt.Should().BeAfter(domainEntityAfterModification.AuditableInfo.CreatedAt);
-        domainEntityAfterModification.AuditableInfo.LastUpdatedAt.Should().Be(DateTimeProvider.GetDate());
+        domainEntityAfterModification.AuditableInfo.LastUpdatedAt.Should().Be(DateTimeProvider.GetDate().UtcDateTime);
         domainEntityAfterModification.AuditableInfo.LastUpdatedBy.Should().Be(executionUser);
 
         domainEntityAfterModification.AuditableInfo.LastSourcePlatform.Should().Be(sourcePlatform);
