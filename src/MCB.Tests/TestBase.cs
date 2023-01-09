@@ -35,11 +35,14 @@ public abstract class TestBase
     }
     protected void ValidateAfterRegisterNew(
         DomainEntityBase domainEntity,
+        Guid tenantId,
         string executionUser,
-        string sourcePlatform
+        string sourcePlatform,
+        Guid correlationId
     )
     {
         domainEntity.Id.Should().NotBe(Guid.Empty);
+        domainEntity.TenantId.Should().Be(tenantId);
 
         domainEntity.AuditableInfo.CreatedAt.Should().Be(DateTimeProvider.GetDate().UtcDateTime);
         domainEntity.AuditableInfo.CreatedBy.Should().Be(executionUser);
@@ -50,6 +53,8 @@ public abstract class TestBase
         domainEntity.AuditableInfo.LastSourcePlatform.Should().Be(sourcePlatform);
 
         domainEntity.RegistryVersion.Should().Be(DateTimeProvider.GetDate().UtcDateTime);
+
+        domainEntity.AuditableInfo.LastCorrelationId.Should().Be(correlationId);
     }
     protected void ValidateAfterRegisterModification(
         DomainEntityBase domainEntityBeforeModification,

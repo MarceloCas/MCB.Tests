@@ -36,4 +36,5 @@ public abstract class FixtureBase
     public static Guid GenerateNewTenantId() => Guid.NewGuid();
     public static string GenerateNewExecutionUser() => $"{nameof(ExecutionUser)} {Guid.NewGuid()}";
     public static string GenerateNewSourcePlatform() => $"{nameof(SourcePlatform)} {Guid.NewGuid()}";
+    public static Guid GenerateCorrelationId() => Guid.NewGuid();
 }

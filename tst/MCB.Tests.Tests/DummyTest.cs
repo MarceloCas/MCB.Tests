@@ -95,40 +95,46 @@ public class DummyTest
     public void TestBase_Should_ValidateAfterRegisterNewOperation_Success()
     {
         // Arrange
+        var tenantId = FixtureBase.GenerateNewTenantId();
         var executionUser = FixtureBase.GenerateNewExecutionUser();
         var sourcePlatform = FixtureBase.GenerateNewSourcePlatform();
+        var correlationId = FixtureBase.GenerateCorrelationId();
 
         // Act
         var dummyDomainEntity = new DummyDomainEntity(DateTimeProvider).RegisterNew(
-            tenantId: FixtureBase.GenerateNewTenantId(),
+            tenantId,
             executionUser,
-            sourcePlatform
+            sourcePlatform,
+            correlationId
         );
 
         // Assert
-        ValidateAfterRegisterNew(dummyDomainEntity, executionUser, sourcePlatform);
+        ValidateAfterRegisterNew(dummyDomainEntity, tenantId, executionUser, sourcePlatform, correlationId);
     }
 
     [Fact]
     public void TestBase_Should_ValidateAfterModificationOperation_Success()
     {
         // Arrange
+        var tenantId = FixtureBase.GenerateNewTenantId();
         var executionUser = FixtureBase.GenerateNewExecutionUser();
         var sourcePlatform = FixtureBase.GenerateNewSourcePlatform();
+        var correlationId = FixtureBase.GenerateCorrelationId();
 
         GenerateNewDateForDateTimeProvider();
 
         var dummyDomainEntity = new DummyDomainEntity(DateTimeProvider).RegisterNew(
-            tenantId: FixtureBase.GenerateNewTenantId(),
+            tenantId,
             executionUser,
-            sourcePlatform
+            sourcePlatform,
+            correlationId
         );
         var clonedDummyDomainEntity = dummyDomainEntity.DeepClone();
 
         GenerateNewDateForDateTimeProvider();
 
         // Act
-        dummyDomainEntity.RegisterModification(executionUser, sourcePlatform);
+        dummyDomainEntity.RegisterModification(executionUser, sourcePlatform, correlationId);
 
         // Assert
         ValidateAfterRegisterModification(clonedDummyDomainEntity, dummyDomainEntity, executionUser, sourcePlatform);

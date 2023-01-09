@@ -17,10 +17,10 @@ public class DummyDomainEntity
 
     protected override DomainEntityBase CreateInstanceForCloneInternal() => new DummyDomainEntity(_dateTimeProvider);
 
-    public DummyDomainEntity RegisterNew(Guid tenantId, string executionUser, string sourcePlatform)
-        => RegisterNewInternal<DummyDomainEntity>(tenantId, executionUser, sourcePlatform);
-    public DummyDomainEntity RegisterModification(string executionUser, string sourcePlatform)
-        => RegisterModificationInternal<DummyDomainEntity>(executionUser, sourcePlatform);
+    public DummyDomainEntity RegisterNew(Guid tenantId, string executionUser, string sourcePlatform, Guid correlationId)
+        => RegisterNewInternal<DummyDomainEntity>(tenantId, executionUser, sourcePlatform, correlationId);
+    public DummyDomainEntity RegisterModification(string executionUser, string sourcePlatform, Guid correlationId)
+        => RegisterModificationInternal<DummyDomainEntity>(executionUser, sourcePlatform, correlationId);
 
     public DummyDomainEntity DeepClone()
         => DeepCloneInternal<DummyDomainEntity>();
