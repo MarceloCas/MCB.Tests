@@ -22,17 +22,6 @@ public abstract class TestBase
     protected abstract IDateTimeProvider CreateDateTimeProvider(DateTimeOffset currentDate);
 
     // Protected Methods
-
-    public void GenerateNewDateForDateTimeProvider(DateTimeOffset? newDate = null)
-    {
-        if (newDate is null)
-        {
-            var referenceDate = DateTimeProvider.GetDate().AddSeconds(1);
-            DateTimeProvider.ChangeGetDateCustomFunction(() => referenceDate);
-        }
-        else
-            DateTimeProvider.ChangeGetDateCustomFunction(() => newDate.Value);
-    }
     protected void ValidateAfterRegisterNew(
         DomainEntityBase domainEntity,
         Guid tenantId,
